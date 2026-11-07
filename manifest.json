@@ -1,0 +1,31 @@
+{
+  "project": "Robot ICL from Human Demonstrations",
+  "contributor": "许雅雯",
+  "repository_status": "documentation_and_demo_available_source_archives_pending",
+  "scope": ["method_reproduction", "paired_data", "post_training", "real_robot_deployment", "evaluation"],
+  "platform": "SO-101",
+  "reading_order": ["README.md", "experiments.md", "implementation.md"],
+  "artifacts": [
+    {
+      "path": "so101-demo.mp4",
+      "type": "real_robot_demo",
+      "description": "SO-101 execution under human video prompts across layouts",
+      "scope": "qualitative examples"
+    },
+    {
+      "path": "so101-layouts.jpg",
+      "type": "demo_video_still",
+      "description": "Example execution frames arranged by layout and demonstration color"
+    }
+  ],
+  "results": [
+    {"id": "dd-tau", "method": "DemoDiffusion", "evidence": "experiment_report", "metric": "checkpoint_tau_interval", "minimum": 0.1, "maximum": 0.2, "scope": "tested checkpoint"},
+    {"id": "dd-recorded", "method": "DemoDiffusion", "evidence": "experiment_report", "metric": "recorded_reference_comparison", "environment": "LIBERO-90", "pure_replay_percent": 90, "fusion_max_percent": 17.5, "scope": "one reported comparison with recorded reference actions"},
+    {"id": "rttt-decode", "method": "RoboTTT", "evidence": "experiment_report", "metric": "1nn_demo_identity_accuracy", "value": 1.0, "chance": 0.125, "scope": "fast-weight decoding probe"},
+    {"id": "rttt-memory", "method": "RoboTTT", "evidence": "experiment_report", "metric": "demo_component_to_fast_weight_state_norm_percent", "value": 0.039, "scope": "readout diagnostic"},
+    {"id": "zw-data", "method": "Zero-WAM", "evidence": "project_report", "metric": "paired_data_and_post_training", "tasks": 6, "layouts": 4, "pairs": 240, "recorded_human_videos": 80, "generated_human_videos": 160, "post_training_steps": 6000},
+    {"id": "zw-offline-position", "method": "Zero-WAM", "evidence": "experiment_report", "metric": "grasp_cell_prediction_follows_demo", "evaluation": "offline_probe", "count": 432, "total": 432, "scope": "mismatched demonstration and scene layouts"},
+    {"id": "zw-red-ood", "method": "Zero-WAM", "evidence": "experiment_report", "metric": "unseen_red_target_task_success", "evaluation": "real_robot", "successes": 2, "trials": 4, "scope": "four trials with unseen red target"}
+  ],
+  "source_archives_pending": ["robottt.zip", "smolvla-robottt.zip", "Zero-WAM.zip"]
+}

@@ -1,0 +1,23 @@
+# Credentials and machine-specific files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+
+# Local Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+
+# Large or private run artifacts
+*.zip
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+checkpoints/
+datasets/
+logs/
+wandb/
